@@ -2,4 +2,5 @@
 <resources>
 
     <string name="app_name">Wear basics</string>
+    <string name="activity_main_snotification_button">A simple notification</string>
 </resources>
