@@ -3,6 +3,7 @@ package test.com.saulmm.simplenotification;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.wearable.view.WatchViewStub;
+import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -21,4 +22,9 @@ public class MainActivity extends Activity {
             }
         });
     }
+
+    public void showBasicNotification(View view) {
+
+    }
+
 }
