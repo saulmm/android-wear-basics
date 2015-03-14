@@ -32,4 +32,8 @@ public class MainActivity extends ActionBarActivity {
 
         mNotificationManager.notify(SIMPLE_NOTIFICATION_ID, nBuilder.build());
     }
+
+    public void showEnrichedNotification(View view) {
+
+    }
 }
