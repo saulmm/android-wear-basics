@@ -8,8 +8,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.app.RemoteInput;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import static android.support.v4.app.NotificationCompat.Action;
 import static android.support.v4.app.NotificationCompat.Builder;
@@ -20,12 +22,15 @@ import static android.support.v4.app.NotificationCompat.WearableExtender;
 public class MainActivity extends ActionBarActivity {
 
     private final static String GROUP_KEY               = "awesome_group";
+    private final static String VOICE_INPUT_RETURN_KEY  = "awesome_input";
 
     private final static int SIMPLE_NOTIFICATION_ID     = 1;
     private final static int ENRICHED_NOTIFICATION_ID   = 2;
     private final static int PAGED_NOTIFICATION_ID      = 3;
     private final static int STACK_1_NOTIFICATION_ID    = 4;
     private final static int STACK_2_NOTIFICATION_ID    = 5;
+    private final static int VOICE_INPUT_NOTIFICATION_ID= 5;
+
 
     private NotificationManagerCompat mNotificationManager;
 
@@ -35,6 +40,31 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         mNotificationManager = NotificationManagerCompat.from(this);
+    }
+
+    /**
+     * On new intent is fired when there is a new incoming intent,
+     * for example if you try to start this activity if is already created
+     * in singletop mode
+     *
+     * @param intent the incoming intent
+     */
+    @Override
+    protected void onNewIntent(Intent intent) {
+
+        super.onNewIntent(intent);
+
+        // Remote input coming from the intent fired by the PendingIntent
+        Bundle remoteInput = RemoteInput.getResultsFromIntent(intent);
+
+        if (remoteInput != null) {
+
+            String inputText = remoteInput.getCharSequence(VOICE_INPUT_RETURN_KEY)
+                .toString();
+
+            Toast.makeText(this, "Cake chosen: "+inputText,
+                Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
@@ -170,5 +200,43 @@ public class MainActivity extends ActionBarActivity {
                 .build();
 
         return bigNotification;
+    }
+
+    public void showVoiceInputNotification(View view) {
+
+        String [] choices = new String[]{
+            "Chocolate cake",
+            "Carrot pie"};
+
+        // Object to manage the input by voice
+        RemoteInput remoteInput = new RemoteInput.Builder(VOICE_INPUT_RETURN_KEY)
+            .setLabel("Choose a cake")
+            .setAllowFreeFormInput(false)
+            .setChoices(choices)
+            .build();
+
+        // Create an intent for the reply action
+        Intent replyIntent = new Intent(this, MainActivity.class);
+
+        // The pending intent that will be fired by the wearable
+        PendingIntent replyPendingIntent = PendingIntent.getActivity(this, 0, replyIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT);
+
+        // An action to start talking at the wearable
+        Action voiceAction = new Action.Builder(R.drawable.ic_cake,"Yum", replyPendingIntent)
+            .addRemoteInput(remoteInput)
+            .build();
+
+        // Create the notification containing the voiceinput action
+        Builder nBuilder = new Builder(this)
+            .setContentTitle("Cakes are cool")
+            .setContentText("Maybe you want to eat a cake right now")
+            .extend(new WearableExtender().addAction(voiceAction))
+            .setSmallIcon(R.drawable.ic_cake)
+            .setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                R.drawable.cake_background));
+
+        // Launch the notification
+        mNotificationManager.notify(VOICE_INPUT_NOTIFICATION_ID, nBuilder.build());
     }
 }
