@@ -19,9 +19,13 @@ import static android.support.v4.app.NotificationCompat.WearableExtender;
 @SuppressWarnings("UnnecessaryLocalVariable")
 public class MainActivity extends ActionBarActivity {
 
+    private final static String GROUP_KEY               = "awesome_group";
+
     private final static int SIMPLE_NOTIFICATION_ID     = 1;
     private final static int ENRICHED_NOTIFICATION_ID   = 2;
     private final static int PAGED_NOTIFICATION_ID      = 3;
+    private final static int STACK_1_NOTIFICATION_ID    = 4;
+    private final static int STACK_2_NOTIFICATION_ID    = 5;
 
     private NotificationManagerCompat mNotificationManager;
 
@@ -109,6 +113,41 @@ public class MainActivity extends ActionBarActivity {
         // Launch the notification
         mNotificationManager.notify(PAGED_NOTIFICATION_ID,
             pagedNotification);
+    }
+
+    /**
+     * Launches two notifications in a group
+     *
+     * @param view view who triggered the event
+     */
+    public void showStackedNotification(View view) {
+
+        final String recipe1 = getString(R.string.recipe1);
+        final String recipe2 = getString(R.string.recipe2);
+
+        // Build the first notification setting the group appropriately
+        Notification notification = new NotificationCompat.Builder(this)
+            .setContentTitle("Chocolate cake")
+            .setContentText(recipe1)
+            .setSmallIcon(R.drawable.ic_cake)
+            .setGroup(GROUP_KEY)
+            .setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                R.drawable.chocolate_cake_background))
+            .build();
+
+        // Build the second notification with the same group
+        Notification notification2 = new NotificationCompat.Builder(this)
+            .setContentTitle("Carrot pie")
+            .setContentText(recipe2)
+            .setSmallIcon(R.drawable.ic_cake)
+            .setGroup(GROUP_KEY)
+            .setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                R.drawable.chocolate_cake_background))
+            .build();
+
+        // Launch both notifications
+        mNotificationManager.notify(STACK_1_NOTIFICATION_ID, notification);
+        mNotificationManager.notify(STACK_2_NOTIFICATION_ID, notification2);
     }
 
     /**
