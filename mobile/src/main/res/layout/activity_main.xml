@@ -21,9 +21,18 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="an Enriched notification"
+        android:text="@string/activity_main_acnotification_button"
         android:onClick="showEnrichedNotification"
         style="@style/WearBasicsButton"
         />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/activity_main_pgnotification_button"
+        android:onClick="showEnrichedPargedNotification"
+        style="@style/WearBasicsButton"
+        />
+
 
 </LinearLayout>

@@ -78,4 +78,8 @@ public class MainActivity extends ActionBarActivity {
 
         mNotificationManager.notify(ENRICHED_NOTIFICATION_ID, nBuilder.build());
     }
+
+    public void showEnrichedPargedNotification(View view) {
+
+    }
 }

@@ -3,4 +3,7 @@
 
     <string name="app_name">Wear basics</string>
     <string name="activity_main_snotification_button">A simple notification</string>
+    <string name="activity_main_acnotification_button">An enriched notification with an action</string>
+    <string name="activity_main_pgnotification_button">An enriched notification paged</string>
+
 </resources>
