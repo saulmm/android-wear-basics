@@ -35,6 +35,9 @@ public class MainListActivity extends Activity
         if (position == 0)
             i = new Intent (this, PickerActivity.class);
 
+        if (position == 3)
+            i = new Intent (this, DismissActivity.class);
+
         if (i != null)
             startActivity(i);
     }
