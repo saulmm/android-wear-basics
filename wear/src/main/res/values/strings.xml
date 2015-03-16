@@ -7,7 +7,6 @@
 
     <string-array name="ui_items">
         <item>2D Picker</item>
-        <item>CircledImageView</item>
         <item>Confirmation activity</item>
         <item>Delayed ConfirmationView</item>
     </string-array>
