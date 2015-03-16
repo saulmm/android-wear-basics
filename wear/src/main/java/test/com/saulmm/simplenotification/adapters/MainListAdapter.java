@@ -1,4 +1,4 @@
-package test.com.saulmm.simplenotification;
+package test.com.saulmm.simplenotification.adapters;
 
 import android.content.Context;
 import android.support.wearable.view.WearableListView;
@@ -7,14 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import test.com.saulmm.simplenotification.R;
+
 @SuppressWarnings("UnnecessaryLocalVariable")
-public class Adapter extends WearableListView.Adapter {
+public class MainListAdapter extends WearableListView.Adapter {
 
     private String[] mDataset;
     private final Context mContext;
 
 
-    public Adapter(Context context, String[] dataset) {
+    public MainListAdapter(Context context, String[] dataset) {
 
         mContext = context;
         mDataset = dataset;

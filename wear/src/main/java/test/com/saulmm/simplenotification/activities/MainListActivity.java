@@ -1,9 +1,12 @@
-package test.com.saulmm.simplenotification;
+package test.com.saulmm.simplenotification.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.wearable.view.WearableListView;
-import android.widget.Toast;
+
+import test.com.saulmm.simplenotification.R;
+import test.com.saulmm.simplenotification.adapters.MainListAdapter;
 
 public class MainListActivity extends Activity
     implements WearableListView.ClickListener {
@@ -19,7 +22,7 @@ public class MainListActivity extends Activity
         WearableListView listView = (WearableListView) findViewById(
             R.id.activity_main_list_listview);
 
-        listView.setAdapter(new Adapter(this, elements));
+        listView.setAdapter(new MainListAdapter(this, elements));
         listView.setClickListener(this);
     }
 
@@ -27,7 +30,13 @@ public class MainListActivity extends Activity
     public void onClick(WearableListView.ViewHolder viewHolder) {
 
         Integer position = (Integer) viewHolder.itemView.getTag();
-        Toast.makeText(this, "Clicked: "+position, Toast.LENGTH_SHORT).show();
+        Intent i = null;
+
+        if (position == 0)
+            i = new Intent (this, PickerActivity.class);
+
+        if (i != null)
+            startActivity(i);
     }
 
     @Override
