@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
-    android:padding="20dp"
+
     >
 
     <FrameLayout
@@ -15,6 +15,8 @@
 >
         <android.support.wearable.view.WearableListView
             android:id="@+id/activity_main_list_listview"
+            android:clipToPadding="false"
+            android:padding="20dp"
             android:layout_height="match_parent"
             android:layout_width="match_parent"/>
     </FrameLayout>
