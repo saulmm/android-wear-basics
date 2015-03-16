@@ -2,6 +2,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
 
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -34,6 +36,7 @@
 
 
     <LinearLayout
+        android:id="@+id/activity_dismiss_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -41,7 +44,7 @@
         >
 
         <android.support.wearable.view.DelayedConfirmationView
-            android:id="@+id/round_activity_dismiss_delayed"
+            android:id="@+id/activity_dismiss_delayed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="15dp"
@@ -55,7 +58,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sure... ?"
+            android:text="Stop it!"
             android:textSize="15sp"
             android:layout_marginLeft="5dp"
             android:layout_gravity="center_vertical"
@@ -63,4 +66,18 @@
             android:textColor="#ffb9b9b9"
             />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/activity_dismiss_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="You rocks !"
+        android:textColor="@color/cancelation_button_foreground"
+        android:textSize="15sp"
+        android:alpha="0"
+        android:paddingBottom="10dp"
+        android:fontFamily="sans-serif-light"
+        />
 </RelativeLayout>

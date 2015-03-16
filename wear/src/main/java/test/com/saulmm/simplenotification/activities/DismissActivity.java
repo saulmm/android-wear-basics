@@ -11,6 +11,9 @@ import test.com.saulmm.simplenotification.R;
 public class DismissActivity extends Activity
     implements WatchViewStub.OnLayoutInflatedListener, DelayedConfirmationView.DelayedConfirmationListener {
 
+    private boolean mCanceled;
+    private View mCanceledMessage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -26,13 +29,15 @@ public class DismissActivity extends Activity
     @Override
     public void onLayoutInflated(WatchViewStub watchViewStub) {
 
-        DelayedConfirmationView delayedConfirmationView = (DelayedConfirmationView) watchViewStub
-            .findViewById(R.id.round_activity_dismiss_delayed);
+        final DelayedConfirmationView delayedConfirmationView = (DelayedConfirmationView) watchViewStub
+            .findViewById(R.id.activity_dismiss_delayed);
+
+        mCanceledMessage = watchViewStub.findViewById(
+            R.id.activity_dismiss_message);
 
         delayedConfirmationView.setTotalTimeMs(5000);
         delayedConfirmationView.setListener(this);
         delayedConfirmationView.start();
-
     }
 
     /**
@@ -43,11 +48,25 @@ public class DismissActivity extends Activity
     @Override
     public void onTimerFinished(View view) {
 
-        this.finish();
+        if (!mCanceled)
+            this.finish();
     }
 
+    /**
+     * Called when the user taps into the DelayedConfirmation view
+     *
+     * @param view who fires the event
+     */
     @Override
     public void onTimerSelected(View view) {
 
+        ((View) view.getParent()).animate()
+            .alpha(0).start();
+
+        mCanceledMessage.animate()
+            .setStartDelay(500)
+            .alpha(1).start();
+
+        mCanceled = true;
     }
 }
