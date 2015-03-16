@@ -3,8 +3,10 @@ package test.com.saulmm.simplenotification;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.wearable.view.WearableListView;
+import android.widget.Toast;
 
-public class MainListActivity extends Activity {
+public class MainListActivity extends Activity
+    implements WearableListView.ClickListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -18,5 +20,18 @@ public class MainListActivity extends Activity {
             R.id.activity_main_list_listview);
 
         listView.setAdapter(new Adapter(this, elements));
+        listView.setClickListener(this);
+    }
+
+    @Override
+    public void onClick(WearableListView.ViewHolder viewHolder) {
+
+        Integer position = (Integer) viewHolder.itemView.getTag();
+        Toast.makeText(this, "Clicked: "+position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onTopEmptyRegionClick() {
+
     }
 }
