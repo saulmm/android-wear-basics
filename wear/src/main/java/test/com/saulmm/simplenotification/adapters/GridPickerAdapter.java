@@ -23,6 +23,7 @@ public class GridPickerAdapter extends FragmentGridPagerAdapter {
         mBackgroundsForRows = backgroundsForRows;
         mContext = context;
         mCakes = cakes;
+
     }
 
     @Override
