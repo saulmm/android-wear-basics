@@ -5,4 +5,12 @@
     <string name="hello_round">Hello Round World!</string>
     <string name="hello_square">Hello Square World!</string>
 
+    <string-array name="ui_items">
+        <item>CircledImageView</item>
+        <item>Card Fragment</item>
+        <item>Confirmation activity</item>
+        <item>Dismiss Overlay Layout</item>
+        <item>GridViewPager</item>
+        <item>FragmentGridViewPager</item>
+    </string-array>
 </resources>
