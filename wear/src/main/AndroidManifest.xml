@@ -10,12 +10,14 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.DeviceDefault" >
         <activity
-            android:name=".WatchViewActivity"
+            android:name=".activities.WatchViewActivity"
             android:label="@string/app_name" >
 
         </activity>
 
-        <activity android:name=".MainListActivity">
+        <activity android:name=".activities.PickerActivity"/>
+
+        <activity android:name=".activities.MainListActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

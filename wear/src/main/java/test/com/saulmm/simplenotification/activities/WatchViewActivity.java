@@ -1,9 +1,11 @@
-package test.com.saulmm.simplenotification;
+package test.com.saulmm.simplenotification.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.wearable.view.WatchViewStub;
 import android.widget.TextView;
+
+import test.com.saulmm.simplenotification.R;
 
 public class WatchViewActivity extends Activity implements WatchViewStub.OnLayoutInflatedListener{
 
