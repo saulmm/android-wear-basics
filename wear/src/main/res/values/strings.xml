@@ -9,7 +9,7 @@
         <item>2D Picker</item>
         <item>CircledImageView</item>
         <item>Confirmation activity</item>
-        <item>Dismiss Overlay Layout</item>
+        <item>Delayed Confirmation View</item>
     </string-array>
 
     <string-array name="recipe1_directions">

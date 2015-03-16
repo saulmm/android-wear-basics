@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cancelation_button_foreground">#D93B2B</color>
+    <color name="cancelation_dismiss_border">#ffff8573</color>
+</resources>
