@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.app.RemoteInput;
 import android.support.v7.app.ActionBarActivity;
@@ -14,6 +13,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import static android.support.v4.app.NotificationCompat.Action;
+import static android.support.v4.app.NotificationCompat.BigTextStyle;
 import static android.support.v4.app.NotificationCompat.Builder;
 import static android.support.v4.app.NotificationCompat.WearableExtender;
 
@@ -126,7 +126,7 @@ public class MainActivity extends ActionBarActivity {
         final String recipe2 = getString(R.string.recipe2);
 
         // Create builder for the main notification
-        NotificationCompat.Builder notificationBuilder = new Builder(this)
+        Builder notificationBuilder = new Builder(this)
             .setSmallIcon(R.drawable.ic_cake)
             .setContentTitle("Cakes recipes")
             .setContentText("Let's check some awesome recipes about cakes")
@@ -135,7 +135,7 @@ public class MainActivity extends ActionBarActivity {
 
         // Extend the notification builder adding two pages
         Notification pagedNotification = notificationBuilder
-            .extend(new NotificationCompat.WearableExtender()
+            .extend(new WearableExtender()
                 .addPage(createBigNotification("Chocolate cake", recipe1))
                 .addPage(createBigNotification("Carrot pie", recipe2)))
             .build();
@@ -156,7 +156,7 @@ public class MainActivity extends ActionBarActivity {
         final String recipe2 = getString(R.string.recipe2);
 
         // Build the first notification setting the group appropriately
-        Notification notification = new NotificationCompat.Builder(this)
+        Notification notification = new Builder(this)
             .setContentTitle("Chocolate cake")
             .setContentText(recipe1)
             .setSmallIcon(R.drawable.ic_cake)
@@ -166,7 +166,7 @@ public class MainActivity extends ActionBarActivity {
             .build();
 
         // Build the second notification with the same group
-        Notification notification2 = new NotificationCompat.Builder(this)
+        Notification notification2 = new Builder(this)
             .setContentTitle("Carrot pie")
             .setContentText(recipe2)
             .setSmallIcon(R.drawable.ic_cake)
@@ -189,12 +189,11 @@ public class MainActivity extends ActionBarActivity {
      */
     private Notification createBigNotification (String title, String content) {
 
-        NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle();
+        BigTextStyle bigTextStyle = new BigTextStyle();
         bigTextStyle.setBigContentTitle(title)
             .bigText(content);
 
-        Notification bigNotification =
-            new NotificationCompat.Builder(this)
+        Notification bigNotification = new Builder(this)
                 .setContentTitle(title)
                 .setStyle(bigTextStyle)
                 .build();
@@ -211,7 +210,6 @@ public class MainActivity extends ActionBarActivity {
         // Object to manage the input by voice
         RemoteInput remoteInput = new RemoteInput.Builder(VOICE_INPUT_RETURN_KEY)
             .setLabel("Choose a cake")
-            .setAllowFreeFormInput(false)
             .setChoices(choices)
             .build();
 

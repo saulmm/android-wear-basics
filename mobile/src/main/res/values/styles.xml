@@ -11,9 +11,14 @@
     </style>
 
     <style name="WearBasicsButton">
-
         <item name="android:minHeight">72dp</item>>
         <item name="android:fontFamily">sans-serif-slab</item>
+    </style>
+
+    <style name="WearBasicsHeaderTextView">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/theme_primary</item>
     </style>
 
 </resources>
