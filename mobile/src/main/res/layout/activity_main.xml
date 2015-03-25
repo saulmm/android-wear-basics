@@ -64,12 +64,7 @@
             style="@style/WearBasicsButton"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:text="Talking with wear"
-            style="@style/WearBasicsHeaderTextView"
-            />
+
 
     </LinearLayout>
 </ScrollView>
